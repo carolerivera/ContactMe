@@ -1,0 +1,123 @@
+﻿@using ContactModel = ContactMe.Models.ContactModel;
+@model ContactModel
+
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml";
+    ViewBag.Title = "Contact Me";
+}
+
+@section Styles { 
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+}
+
+<h2>Would you like to chat over coffee? Bounce an idea? Contact me using the form below.</h2>
+@using (Html.BeginForm("Submit", "Contact", FormMethod.Post, new { @id ="contact_form", @class = "", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="error-messages">
+        <h4></h4>
+        <ul></ul>
+    </div>
+    <div class="field-wrapper">
+        <div class="label-wrapper">
+            @Html.LabelFor(m => m.FirstName, new { @class = "required" })
+            <div class="rules">Required.</div>
+        </div>
+        <div class="input-wrapper">
+            @Html.TextBoxFor(m => m.FirstName, new { tabindex = 1 })
+        </div>
+    </div>
+    <div class="field-wrapper">
+        <div class="label-wrapper">
+            @Html.LabelFor(m => m.LastName, new { @class = "required" })
+            <div class="rules">Required.</div>
+        </div>
+        <div class="input-wrapper">
+            @Html.TextBoxFor(m => m.LastName, new { tabindex = 2 })
+        </div>
+    </div>
+    <div class="field-wrapper">
+        <div class="label-wrapper">
+            @Html.LabelFor(m => m.EmailAddress, new { @class = "required" })
+            <div class="rules">Required.</div>
+        </div>
+        <div class="input-wrapper">
+            @Html.TextBoxFor(m => m.EmailAddress, new { tabindex = 3 })
+        </div>
+    </div>
+    <div class="field-wrapper">
+        <div class="label-wrapper">
+            @Html.LabelFor(m => m.Telephone)
+        </div>
+        <div class="input-wrapper">
+            @Html.TextBoxFor(m => m.Telephone, new { @class = "small", tabindex = 4 })
+        </div>
+    </div>
+    <div class="field-wrapper">
+        <div class="label-wrapper">
+            @Html.LabelFor(m => m.BestTimeToCall)
+            <div class="rules">
+                @string.Format("Between {0} and {1}, with {2} minute increments.",
+               ContactModel.MinTime, ContactModel.MaxTime, ContactModel.MinuteIncrement)
+            </div>
+        </div>
+        <div class="input-wrapper">
+            @Html.TextBox("TimeToCall", null, new
+            {
+                @class = "very-small",
+                tabindex = 5,
+                data_mintime = ContactModel.MinTime,
+                data_maxtime = ContactModel.MaxTime,
+                data_minuteinc = ContactModel.MinuteIncrement.ToString()
+            })
+            <div class="am-pm-wrapper">
+                <input id="radio_am" name="AMPM" type="radio" value="AM">
+                <label tabindex=6 class="icon-am" for="radio_am">
+                    AM
+                </label>
+                <input id="radio_pm" name="AMPM" type="radio" value="PM">
+                <label tabindex=7 class="icon-pm" for="radio_pm">
+                    PM
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="captcha-field-wrapper">
+        <div class="label-wrapper">
+            @Html.LabelFor(m => m.CaptchaCode, new { @class = "required" })
+            <div class="rules">Required. Enter the Captcha code to prove you are a human.</div>
+        </div>
+        <div class="captcha-wrapper">
+            @Html.Captcha(new MvcCaptcha("CustomCaptcha"){ UserInputID = "CaptchaCode" })
+            @Html.TextBox("CaptchaCode", null, new { @class = "very-small", tabindex = 8 })
+            <span class="captcha-success"></span>
+        </div>
+    </div>
+
+    <div class="button-wrapper">
+        @* This helps maintain the alignment and contains any hidden input fields *@
+        <div class="label-wrapper">
+            @Html.HiddenFor(m => m.BestTimeToCall)
+            @Html.HiddenFor(m => m.CaptchaId)
+            @Html.HiddenFor(m => m.CaptchaInstanceId)
+        </div>
+        <input type="submit" value="Submit" tabindex="9" />
+        <input type="button" onclick="resetForm()" value="Reset" tabindex="10" />
+        <span class="spinner"></span>
+    </div>
+}
+
+<div id="success" style="display: none;">
+    <h3>Thank you, your information was saved successfully!</h3>
+    <p>
+        I will contact you shortly, but in the meantime check out my code on 
+        <a href="https://github.com/carolerivera" rel="external" target="_blank" title="GitHub Repositories">GitHub</a> 
+        or my <a href="https://www.linkedin.com/in/carole-rivera-43b5b447" rel="external" target="_blank" title="LinkedIn Profile">LinkedIn profile</a>.
+    </p>
+</div>
+
+@section Scripts {
+    <script src="/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/ContactMe.es6.min.js"></script>
+}

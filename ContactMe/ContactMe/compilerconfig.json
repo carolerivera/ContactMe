@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Styles/ContactMe.css",
+    "inputFile": "Styles/ContactMe.scss"
+  },
+  {
+    "outputFile": "Scripts/ContactMe.es6.js",
+    "inputFile": "Scripts/ContactMe.js"
+  }
+]

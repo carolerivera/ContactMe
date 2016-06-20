@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(!String.IsNullOrEmpty(ViewBag.Title) ? ViewBag.Title : "Carole Rivera")</title>
+    <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="~/Styles/ContactMe.min.css">
+    <link rel="icon" href="~/Images/favicon.ico" type="image/ico" />
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="body-wrapper">
+        <div class="header">
+            <div class="container">
+                <ul class="links">
+                    <li>
+                        <a class="icon-git" href="https://github.com/carolerivera" rel="external" target="_blank" title="GitHub Repositories"></a>
+                    </li>
+                    <li>
+                        <a class="icon-linkedin" href="https://www.linkedin.com/in/carole-rivera-43b5b447" rel="external" target="_blank" title="LinkedIn Profile"></a>
+                    </li>
+                </ul>
+                <div class="title">Carole Rivera</div>
+                <div class="sub-title">Developer. Book worm. Amateur gardener.</div>
+            </div>
+        </div>
+        <div class="container">
+            @RenderBody()
+        </div>
+        <div class="push"></div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            &copy; 2016 CaroleRivera.com
+        </div>
+    </div>
+    @RenderSection("Scripts", false)
+</body>
+</html>

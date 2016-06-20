@@ -1,0 +1,484 @@
+/*** Define Variables ***/
+
+// Background colors
+$body-color: #EDEDED;
+$gradient-dark: #373B44;
+$gradient-light: #61B1A9;
+
+// Primary input colors
+$primary: #3C948B;
+$primary-dark: #03554C;
+$primary-extra-dark: #003E37;
+
+// Default input colors
+$input-border: #ABABAB;
+$input-background: #FFFFFF;
+$input-dark: #DEDEDE;
+
+// Error colors
+$error-border: #CC3944;
+$error-text: #A71C26;
+
+// Font colors
+$gray-font: #383D48;
+
+// Footer variables
+$sticky-footer-height: 30px;
+
+/*** Define Fonts and Animations ***/
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/fontawesome/fontawesome-webfont.eot?v=3.2.1');
+    src: url('../fonts/fontawesome/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../fonts/fontawesome/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../fonts/fontawesome/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../fonts/fontawesome/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@-ms-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*** Global styling ***/
+html,
+body {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #EDEDED;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    margin: 0;
+    height: 100%;
+    min-width: 370px;
+}
+
+.body-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto $sticky-footer-height * -2;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    max-width: 1024px;
+}
+
+a {
+    text-decoration: none;
+    color: $primary;
+}
+
+/*** Header ***/
+.header {
+    background: $primary; // For browsers that do not support gradients
+    background: -webkit-linear-gradient(top left, $gradient-dark, $gradient-light); // For Safari 5.1 to 6.0
+    background: -o-linear-gradient(bottom right, $gradient-dark, $gradient-light); // For Opera 11.1 to 12.0
+    background: -moz-linear-gradient(bottom right, $gradient-dark, $gradient-light); // For Firefox 3.6 to 15
+    background: linear-gradient(to bottom right, $gradient-dark, $gradient-light); // Standard syntax
+    height: 350px;
+    color: #FFFFFF;
+    // Social media and external links
+    .links {
+        text-align: left;
+        padding: 20px 0 60px;
+        margin: 0;
+
+        li {
+            display: inline;
+
+            a {
+                font-family: FontAwesome;
+                font-size: 36px;
+                color: #FFFFFF;
+                margin-right: 30px;
+
+                &.icon-git:before {
+                    content: "\f09b";
+                }
+
+                &.icon-git:hover:before {
+                    content: "\f092";
+                }
+
+                &.icon-linkedin:before {
+                    content: "\f0e1";
+                }
+
+                &.icon-linkedin:hover:before {
+                    content: "\f08c";
+                }
+            }
+        }
+    }
+
+    .title {
+        font-size: 72px;
+        font-family: 'Dancing Script', cursive;
+        text-align: center;
+    }
+
+    .sub-title {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+/*** Form styling ***/
+form {
+    margin: 30px 0 $sticky-footer-height * 2;
+
+    input[type=text] {
+        padding: 8px;
+        width: 250px;
+        border: 1px solid $input-border;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        vertical-align: top;
+        margin-right: 10px;
+
+        &:focus {
+            outline: none !important;
+            border: 1px solid $primary;
+        }
+
+        &.error {
+            outline: none !important;
+            border: 1px solid $error-border;
+        }
+
+        &.small {
+            width: 150px;
+        }
+
+        &.very-small {
+            width: 75px;
+        }
+    }
+
+    .am-pm-wrapper {
+        display: inline-block;
+        margin: 5px 10px 5px 0;
+
+        input[type=radio] {
+            display: none;
+        }
+
+        label {
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid $body-color;
+
+            &:before {
+                font-size: 16px;
+                font-family: FontAwesome;
+                margin: 0 5px;
+                border: 1px solid $input-border;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                background: $input-background;
+            }
+
+            &.icon-am:before {
+                content: "\f185";
+                padding: 3px 4px;
+            }
+
+            &.icon-pm:before {
+                content: "\f186";
+                padding: 3px 4px 3px 5px;
+            }
+
+            &:focus {
+                outline: none !important;
+                border: 1px solid $body-color;
+
+                &:before {
+                    border: 1px solid $primary;
+                }
+            }
+
+            &:hover::before {
+                background-color: $input-dark;
+            }
+        }
+
+        input[type=radio]:checked + label {
+            &:before {
+                color: #FFFFFF;
+                background: $primary;
+                border: 1px solid $primary;
+            }
+
+            &:focus::before {
+                border: 1px solid $primary-dark;
+            }
+        }
+    }
+
+    .label-wrapper {
+        display: inline-block;
+        width: 250px;
+        vertical-align: top;
+
+        label {
+            font-weight: bold;
+            line-height: 26px;
+        }
+
+        .rules {
+            font-size: 14px;
+            width: 230px;
+            color: $gray-font;
+        }
+    }
+
+    .input-wrapper {
+        display: inline-block;
+        height: 60px;
+    }
+    // Captcha specific styling
+    .captcha-field-wrapper {
+        margin: 30px 0;
+
+        .label-wrapper {
+            vertical-align: top;
+        }
+
+        &.validated {
+            pointer-events: none;
+
+            .captcha-wrapper {
+                div,
+                input {
+                    opacity: .5;
+                }
+
+                .captcha-success:before {
+                    font-size: 22px;
+                    font-family: FontAwesome;
+                    content: "\f00c";
+                    color: $primary;
+                    margin: 4px 0;
+                    position: absolute;
+                }
+            }
+        }
+
+        .captcha-wrapper {
+            display: inline-block;
+            // Overwrite BotDetect's styling
+            div:first-child {
+                margin-bottom: 10px !important;
+            }
+        }
+    }
+
+    label.error {
+        display: inline;
+        color: $error-text;
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .error-messages {
+        margin: 30px 0;
+
+        h4 {
+            color: $error-text;
+        }
+    }
+
+    .button-wrapper {
+        input[type=button],
+        input[type=submit] {
+            padding: 10px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            font-size: 14px;
+        }
+
+        input[type=button] {
+            background-color: $input-background;
+            border: 1px solid $input-border;
+
+            &:hover {
+                background-color: $input-dark;
+            }
+
+            &:focus {
+                outline: none !important;
+                border: 1px solid $primary;
+            }
+        }
+
+        input[type=submit] {
+            background-color: $primary-dark;
+            color: #FFFFFF;
+            border: 1px solid $primary-dark;
+            margin-right: 10px;
+
+            &:hover {
+                background-color: $primary-extra-dark;
+            }
+
+            &:focus {
+                border: 1px solid $primary-extra-dark;
+            }
+        }
+    }
+
+    &.loading {
+
+        label,
+        input[type=button],
+        input[type=submit] {
+            pointer-events: none;
+        }
+        // Loading Icon
+        .spinner:before {
+            font-size: 22px;
+            font-family: FontAwesome;
+            content: "\f110";
+            margin: 10px;
+            position: absolute;
+            -webkit-animation-name: spin;
+            -webkit-animation-duration: 3000ms;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -moz-animation-name: spin;
+            -moz-animation-duration: 3000ms;
+            -moz-animation-iteration-count: infinite;
+            -moz-animation-timing-function: linear;
+            -ms-animation-name: spin;
+            -ms-animation-duration: 3000ms;
+            -ms-animation-iteration-count: infinite;
+            -ms-animation-timing-function: linear;
+        }
+    }
+}
+
+/*** Footer styling ***/
+.push {
+    height: $sticky-footer-height * 2;
+}
+
+.footer {
+    color: $gray-font;
+    height: $sticky-footer-height;
+}
+
+/*** Responsive Styling ***/
+
+// Move the label errors underneath the input fields for smaller desktop browsers.
+@media (max-width: 1300px) {
+    form {
+        .input-wrapper,
+        .captcha-wrapper {
+            width: 400px;
+
+            label.error {
+                display: inline-block;
+                width: 100%;
+            }
+        }
+
+        .input-wrapper {
+            height: 75px;
+        }
+    }
+}
+
+// For tablets and phones, move the input directly under the label.
+// Allow the label and rules to take the full width of the page.
+// Resize some of the elements in the header as well.
+@media (max-width: 992px) {
+    .header {
+        height: 300px;
+
+        .links {
+            padding-bottom: 50px;
+
+            a {
+                font-size: 28px;
+            }
+        }
+
+        .title {
+            font-size: 48px;
+        }
+
+        .sub-title {
+            font-size: 22px;
+        }
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    form {
+        .label-wrapper {
+            width: 100%;
+
+            .rules {
+                width: 100%;
+            }
+        }
+
+        .input-wrapper,
+        .captcha-wrapper {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px 0 20px;
+        }
+
+        .button-wrapper .label-wrapper {
+            display: none;
+        }
+    }
+}
